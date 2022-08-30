@@ -34,6 +34,16 @@ $service = new WebhookService();
 $result = $service->create(string 'clientId', string 'token', array 'inputData', string 'env');
 ```
 
+## Maintainers!
+
+Steps to publish release in packagist.org.
+1. Create realese, atention with [Semantic Versioning](http://semver.org/);
+2. Access https://packagist.org/packages/linx/oms-notifications-client-php
+3. Authenticate with your account;
+4. Click in "Update" button;
+
+If you have no permission to manage the package, contact you manager.
+
 License
 =======
 

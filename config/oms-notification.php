@@ -1,8 +1,6 @@
 <?php
 
 return [
-    // 'default' => env('OMS_NOTIFICATION_ENV', 'production'),
-
     'production' => [
         'host' => env('OMS_NOTIFICATION_PRODUCTION_HOST', NULL),
     ],

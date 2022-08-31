@@ -17,7 +17,7 @@ class Base
         $head = [
             'User-Agent' => 'oms-notification-client',
             'Accept' => 'application/json',
-            'Authorization' => "Bearer $token",
+            'Authorization' => "Bearer {$token}",
         ];
 
         $response = $clientHttp->request(

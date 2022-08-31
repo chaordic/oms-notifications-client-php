@@ -6,7 +6,7 @@ To install OMS-Notification-Client, run the command below and you will get the l
 version
 
 ```sh
-composer require linx/oms-notification-client-php
+composer require linx/oms-notifications-client-php
 ```
 
 ## Documentaion

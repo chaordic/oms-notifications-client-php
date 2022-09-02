@@ -23,26 +23,17 @@ class WebhookService extends Base
         'AWS',
     ];
 
-    private const AVALIABLE_ENV = [
-        'production',
-        'test',
-        'homolog',
-        'development',
-    ];
-
     /**
      * @throws Exception
      */
-    public function create(string $clientId, string $token, array $input, string $env): array
+    public function create(string $clientId, string $token, array $input): array
     {
         $this->validateInput($clientId, $input);
 
-        $this->validateEnv($env);
-
-        return $this->send($this->getUrl($env, $clientId), $token, $input);
+        return $this->send($this->getUrl($clientId), $token, $input);
     }
 
-    private function validateInput(string $clientId, array $input):void
+    private function validateInput(string $clientId, array $input): void
     {
         /** @var ValidationValidator $validator */
         $validator = Validator::make($input, [
@@ -89,35 +80,20 @@ class WebhookService extends Base
             'auth.type.in' => 'The selected auth.type is invalid. Options: ' . implode(', ', self::ACCEPTED_AUTH_TYPES) . '.',
         ])->validate();
     }
-    
-    private function validateEnv($env): void
-    {
-        /** @var ValidationValidator $validator */
-        $validator = Validator::make(['env' => $env], [
-            'env' => [
-                'string',
-                Rule::in(self::AVALIABLE_ENV),
-            ],
-        ], [
-            'env.in' => 'The selected env is invalid. Options: ' . implode(', ', self::AVALIABLE_ENV) . '.',
-        ])->validate();
-    }
 
     /**
      * @throws Exception
      */
-    public function getUrl(string $env, string $clientId): string
+    public function getUrl(string $clientId): string
     {
-        $source = dirname(__DIR__).'/../config/oms-notification.php';
+        $host = env('OMS_NOTIFICATION_HOST');
 
-        $config = require $source;
-
-        if (null === $config[$env]['host'] || false === filter_var($config[$env]['host'], FILTER_VALIDATE_URL)){
-            throw new Exception("Invalid env config for {$env}.");
+        if (null === $host || false === filter_var($host, FILTER_VALIDATE_URL)) {
+            throw new Exception("Invalid env config.");
         }
 
         $path = str_replace('{clientId}', $clientId, self::ENDPOINT_CREATE);
 
-        return $config[$env]['host'].$path;
+        return $host.$path;
     }
 }

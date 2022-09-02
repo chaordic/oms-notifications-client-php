@@ -5,8 +5,16 @@
 To install OMS-Notification-Client, run the command below and you will get the latest
 version
 
-```sh
+``` sh
 composer require linx/oms-notifications-client-php
+```
+
+## Configuration
+
+Add variable to enviroment file (.env).
+
+``` sh
+OMS_NOTIFICATION_HOST = http://oms-notification.com.br
 ```
 
 ## Documentaion
@@ -22,7 +30,7 @@ Webhook is a type of notification used for integration between applications.
 ``` php
 use Linx\OmsNotificationClient\Facades\WebhookFacade;
 
-$result = WebhookFacade::create(string 'clientId', string 'token', array 'inputData', string 'env');
+$result = WebhookFacade::create(string 'clientId', string 'token', array 'inputData');
 ```
 
 #### Without Laravel
@@ -31,7 +39,26 @@ $result = WebhookFacade::create(string 'clientId', string 'token', array 'inputD
 use Linx\OmsNotificationClient\Notification\WebhookService;
 
 $service = new WebhookService();
-$result = $service->create(string 'clientId', string 'token', array 'inputData', string 'env');
+$result = $service->create(string 'clientId', string 'token', array 'inputData');
+```
+
+#### Example of inputData
+
+``` php
+$input = [
+    'clientId' => 'clientid',
+    'referenceId' => 'ORDER-01216215-F1',
+    'application' => 'ORDER',
+    'url' => 'http://xpto.com',
+    'method' => 'POST',
+    'body'=> '....',
+    'headers' => [],
+    'retry' => 2,
+    'auth' => [
+        'type' => 'Bearer',
+        'token' => 'GVSWcOmXb74QMSqBlXS7sSPhiDsatFIaPwf27xPR',
+    ]
+];
 ```
 
 ## Maintainers!

@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 class WebhookServiceTest extends TestCase
 {
     private $input;
-    
+
     public function setUp()
     {
         $this->input = [
@@ -34,7 +34,7 @@ class WebhookServiceTest extends TestCase
         $this->expectExceptionMessage('The given data was invalid.');
 
         $service = new WebhookService();
-        $result = $service->create('clientId', 'token', $input, 'development');
+        $service->create('clientId', 'token', $input);
     }
 
     public function testRequiredReferenceId()
@@ -46,7 +46,7 @@ class WebhookServiceTest extends TestCase
         $this->expectExceptionMessage('The given data was invalid.');
 
         $service = new WebhookService();
-        $result = $service->create('clientId', 'token', $input, 'development');
+        $service->create('clientId', 'token', $input);
     }
 
     public function testRequiredApplication()
@@ -58,7 +58,7 @@ class WebhookServiceTest extends TestCase
         $this->expectExceptionMessage('The given data was invalid.');
 
         $service = new WebhookService();
-        $result = $service->create('clientId', 'token', $input, 'development');
+        $service->create('clientId', 'token', $input);
     }
 
     public function testRequiredUrl()
@@ -70,7 +70,7 @@ class WebhookServiceTest extends TestCase
         $this->expectExceptionMessage('The given data was invalid.');
 
         $service = new WebhookService();
-        $result = $service->create('clientId', 'token', $input, 'development');
+        $service->create('clientId', 'token', $input);
     }
 
     public function testRequiredMethod()
@@ -82,7 +82,7 @@ class WebhookServiceTest extends TestCase
         $this->expectExceptionMessage('The given data was invalid.');
 
         $service = new WebhookService();
-        $result = $service->create('clientId', 'token', $input, 'development');
+        $service->create('clientId', 'token', $input);
     }
 
     public function testRequiredAuthType()
@@ -94,7 +94,7 @@ class WebhookServiceTest extends TestCase
         $this->expectExceptionMessage('The given data was invalid.');
 
         $service = new WebhookService();
-        $result = $service->create('clientId', 'token', $input, 'development');
+        $service->create('clientId', 'token', $input);
     }
 
     public function testRequiredAuthToken()
@@ -106,6 +106,6 @@ class WebhookServiceTest extends TestCase
         $this->expectExceptionMessage('The given data was invalid.');
 
         $service = new WebhookService();
-        $result = $service->create('clientId', 'token', $input, 'development');
+        $service->create('clientId', 'token', $input);
     }
 }

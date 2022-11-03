@@ -38,8 +38,8 @@ $result = WebhookFacade::create(string 'clientId', string 'token', array 'inputD
 ``` php
 use Linx\OmsNotificationClient\Notification\WebhookService;
 
-$service = new WebhookService();
-$result = $service->create(string 'clientId', string 'token', array 'inputData');
+$webhookService = new WebhookService();
+$result = $webhookService->create(string 'clientId', string 'token', array 'inputData');
 ```
 
 #### Example of inputData
@@ -58,6 +58,48 @@ $input = [
         'type' => 'Bearer',
         'token' => 'GVSWcOmXb74QMSqBlXS7sSPhiDsatFIaPwf27xPR',
     ]
+];
+```
+
+=======
+
+
+### Whatsapp
+
+Create notification to whatsapp number.
+
+#### With Laravel
+
+``` php
+use Linx\OmsNotificationClient\Facades\WhatsappFacade;
+
+$result = WhatsappFacade::create(string 'clientId', string 'token', array 'inputData');
+```
+
+#### Without Laravel
+
+``` php
+use Linx\OmsNotificationClient\Notification\WhatsappService;
+
+$whatsappService = new WhatsappService();
+$result = $whatsappService->create(string 'clientId', string 'token', array 'inputData');
+```
+
+#### Example of inputData
+
+``` php
+$input = [
+    'clientId' => $client->clientId,
+    'referenceId' => 'ORDER-01216215-F1',
+    'application' => 89665,
+    'provider' => [
+        'type' => 'TWILIO',
+        'sid' => 'ACXXXXXX',
+        'token' => 'GVSWcOmXb74QMSqBlXS7sSPhiDsatFIaPwf27xPR',
+    ],
+    'to' => 8881231234,
+    'from' => 9991231234,
+    'body'=> '....',
 ];
 ```
 
